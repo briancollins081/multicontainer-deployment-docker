@@ -26,6 +26,7 @@ deploy:
     bucket_path: app-docker-multicontainer
     on:
         branch: master
+    # AWS KEYS
     access_key_is: $AWS_ACCESS_KEY
     secret_access_key: 
         secure: $AWS_SECRET_KEY
