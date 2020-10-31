@@ -1,0 +1,19 @@
+sudo: required
+services:
+  - docker
+before_install:
+  - docker build -t briancollins081/multicontainer_client_test -f ./client/Dockerfile.dev ./client
+scripts:
+  - docker run -e CI=true briancollins081/multicontainer_client_test npm run test
+after_success:
+  - docker build -t briancollins081/multicontainer_client ./client
+  - docker build -t briancollins081/multicontainer_nginx ./nginx
+  - docker build -t briancollins081/multicontainer_server ./server
+  - docker build -t briancollins081/multicontainer_worker ./worker
+  # Login in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take the images and push them to docker hub
+  - docker push briancollins081/multicontainer_client
+  - docker push briancollins081/multicontainer_nginx
+  - docker push briancollins081/multicontainer_server
+  - docker push briancollins081/multicontainer_worker
