@@ -18,15 +18,15 @@ after_success:
   - docker push briancollins081/multicontainer_server
   - docker push briancollins081/multicontainer_worker
 deploy:
+    skip_cleanup: true
     provider: elasticbeanstalk
-    region: us-east-2
-    app: multicontainer-docker-app
-    environment: MulticontainerDockerApp-env
-    bucket_name: elasticbeanstalk-us-east-2-377192346697
-    bucket_path: app-docker-multicontainer
+    region: "us-east-2"
+    app: "multicontainer-docker-app"
+    environment: "MulticontainerDockerApp-env"
+    bucket_name: "elasticbeanstalk-us-east-2-377192346697"
+    bucket_path: "app-docker-multicontainer"
     on:
         branch: master
     # AWS KEYS
-    access_key_is: $AWS_ACCESS_KEY
-    secret_access_key: 
-        secure: $AWS_SECRET_KEY
+    access_key_is: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"
