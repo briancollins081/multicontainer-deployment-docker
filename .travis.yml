@@ -17,3 +17,15 @@ after_success:
   - docker push briancollins081/multicontainer_nginx
   - docker push briancollins081/multicontainer_server
   - docker push briancollins081/multicontainer_worker
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multicontainer-docker-app
+    environment: MulticontainerDockerApp-env
+    bucket_name: elasticbeanstalk-us-east-2-377192346697
+    bucket_path: app-docker-multicontainer
+    on:
+        branch: master
+    access_key_is: $AWS_ACCESS_KEY
+    secret_access_key: 
+        secure: $AWS_SECRET_KEY

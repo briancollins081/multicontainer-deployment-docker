@@ -8,6 +8,7 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgresuser
+      # - POSTGRES_db=fibvalues
   redis:
     image: "redis:latest"
   nginx:
